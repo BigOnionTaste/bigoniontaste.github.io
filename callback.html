@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tesla Watch 로그인 코드</title>
+<style>body{font-family:sans-serif;max-width:640px;margin:40px auto;padding:0 16px}code{display:block;word-break:break-all;background:#f2f2f2;padding:12px;border-radius:8px}</style>
+</head><body>
+<h2>Tesla Watch 로그인</h2>
+<p id="msg">처리 중…</p>
+<code id="code"></code>
+<p><button id="copy" hidden>복사</button></p>
+<p>이 페이지는 아무 데이터도 서버로 보내지 않습니다. 코드를 PowerShell 창에 붙여넣으세요.</p>
+<script>
+const p=new URLSearchParams(location.search);
+const c=p.get('code'), e=p.get('error');
+const msg=document.getElementById('msg'), el=document.getElementById('code'), b=document.getElementById('copy');
+if(c){msg.textContent='아래 code를 복사해 PowerShell에 붙여넣으세요 (몇 분 내 만료).';el.textContent=c;b.hidden=false;
+ b.onclick=()=>navigator.clipboard.writeText(c).then(()=>b.textContent='복사됨');}
+else{msg.textContent='오류: '+(e||'code 없음')+' '+(p.get('error_description')||'');}
+</script></body></html>
